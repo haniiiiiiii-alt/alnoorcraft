@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlNoorCraft.com - Saving & Jewellery Boxes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF3E7;
+    --cream2:#FFF9EF;
+    --zinc:#27272A;
+    --zinc-light:#52525B;
+    --brown:#C4A484;
+    --brown-dark:#A67C52;
+    --gold:#D4AF37;
+    --white:#fff;
+    --shadow:0 10px 30px rgba(39,39,42,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+  body{background:var(--cream);color:var(--zinc)}
+  a{text-decoration:none;color:inherit}
+  header{position:sticky;top:0;z-index:100;background:rgba(250,243,231,.95);backdrop-filter:blur(10px);border-bottom:1px solid #E8DDC8}
+  .nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1}
+  .logo span{color:var(--brown-dark)}
+  .logo small{display:block;font-family:'Poppins';font-size:10px;letter-spacing:3px;color:var(--zinc-light);font-weight:600}
+  .nav-links{display:flex;gap:22px;font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--brown-dark)}
+  .cart-btn{position:relative;background:var(--zinc);color:#fff;border:none;padding:10px 18px;border-radius:30px;cursor:pointer;font-weight:600}
+  #cartCount{position:absolute;top:-6px;right:-6px;background:var(--brown-dark);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+  .hero{max-width:1200px;margin:20px auto;padding:28px 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+  .hero h1{font-family:'Playfair Display',serif;font-size:48px;line-height:1.05;animation:fadeUp .8s ease both}
+  .hero h1 em{color:var(--brown-dark);font-style:normal}
+  .hero p{color:var(--zinc-light);margin:14px 0 22px;line-height:1.7;animation:fadeUp .8s .15s ease both}
+  .hero-img{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);animation:fadeUp .8s .2s ease both}
+  .hero-img img{width:100%;height:380px;object-fit:cover;display:block}
+  .badge{display:inline-block;background:#fff;border:1px solid #E8DDC8;padding:7px 14px;border-radius:30px;font-size:12px;font-weight:600;margin-bottom:14px}
+  .btn-bling{position:relative;overflow:hidden;background:linear-gradient(135deg,#C4A484,#A67C52);color:#fff;border:none;padding:15px 28px;border-radius:30px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 12px 25px rgba(166,124,82,.35);transition:.3s}
+  .btn-bling:hover{transform:translateY(-3px);box-shadow:0 18px 30px rgba(166,124,82,.45)}
+  .btn-bling::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.9),transparent);transform:skewX(-20deg);animation:shine 2.2s infinite}
+  @keyframes shine{0%{left:-80%}60%,100%{left:130%}}
+  .btn-dark{background:var(--zinc);color:#fff;border:none;padding:14px 22px;border-radius:30px;font-weight:600;cursor:pointer}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .8s .3s ease both}
+  .section{max-width:1200px;margin:auto;padding:20px}
+  .section h2{font-family:'Playfair Display',serif;font-size:30px;margin-bottom:6px}
+  .section p.sub{color:var(--zinc-light);margin-bottom:18px}
+  .cats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .cat{background:#fff;border-radius:20px;padding:20px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow);cursor:pointer;transition:.3s}
+  .cat:hover{transform:translateY(-4px)}
+  .cat h3{font-size:19px}
+  .cat span{font-size:13px;color:var(--zinc-light)}
+  .cat b{font-size:28px}
+  .filter{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+  .filter button{padding:9px 18px;border-radius:30px;border:1px solid #D8CBB0;background:#fff;cursor:pointer;font-weight:600}
+  .filter button.active{background:var(--zinc);color:#fff;border-color:var(--zinc)}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);animation:fadeUp .6s ease both;transition:.3s}
+  .card:hover{transform:translateY(-6px)}
+  .card img{width:100%;height:220px;object-fit:cover}
+  .card-body{padding:14px}
+  .card-body small{color:var(--brown-dark);font-weight:700;letter-spacing:1px;font-size:11px;text-transform:uppercase}
+  .card-body h3{font-size:16px;margin:5px 0}
+  .price{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+  .price b{font-size:18px}
+  .price s{color:#999;font-size:13px;font-weight:400}
+  .add-btn{width:100%;margin-top:12px}
+  .why{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
+  .why div{background:#fff;padding:18px;border-radius:18px;text-align:center}
+  .why b{display:block;margin:8px 0 4px}
+  .why span{font-size:13px;color:var(--zinc-light)}
+  .drawer{position:fixed;top:0;right:-400px;width:360px;max-width:92vw;height:100%;background:#fff;z-index:200;transition:.35s;padding:20px;display:flex;flex-direction:column;box-shadow:-10px 0 30px rgba(0,0,0,.15)}
+  .drawer.open{right:0}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;z-index:150}
+  .overlay.show{display:block}
+  .cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #eee;align-items:center}
+  .cart-item img{width:60px;height:60px;object-fit:cover;border-radius:12px}
+  .cart-item input{width:50px;padding:5px;border-radius:8px;border:1px solid #ddd;text-align:center}
+  .total{font-size:19px;font-weight:700;display:flex;justify-content:space-between;margin:14px 0}
+  input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #ddd;margin-bottom:10px;font-size:14px;background:var(--cream2)}
+  footer{background:var(--zinc);color:#EDE9E3;padding:30px 20px;margin-top:30px;text-align:center}
+  footer h3{font-family:'Playfair Display',serif;font-size:24px}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:800px){.hero{grid-template-columns:1fr}.hero h1{font-size:36px}.grid{grid-template-columns:repeat(2,1fr)}.why{grid-template-columns:repeat(2,1fr)}.cats{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">AL NOOR <span>CRAFT</span><small>ALNOORCRAFT.COM</small></div>
+    <div class="nav-links">
+      <a href="#">Home</a><a href="#products">Saving Boxes</a><a href="#products">Jewellery Boxes</a><a href="#why">Why Us</a>
+    </div>
+    <button class="cart-btn" onclick="toggleCart(true)">🛒 Cart <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="badge">✨ Cash on Delivery • All Pakistan Delivery</span>
+    <h1>Crafted With Love,<br><em>Saved With Care.</em></h1>
+    <p>AlNoorCraft ki premium Saving Boxes se apni saving ko mazedar banao — 10,000 se 500,000 tak. Aur apne zevar ko do royal look hamari velvet Jewellery Boxes ke saath.</p>
+    <div class="btn-row">
+      <button class="btn-bling" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">✨ Shop Now — Bling Sale</button>
+      <button class="btn-dark" onclick="filterCat('saving')">Saving Boxes Dekho</button>
+    </div>
+    <p style="font-size:13px;margin-top:14px">⭐ 4.9 Rating • 1200+ Happy Customers • 7 Days Easy Return</p>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=900&q=80" alt="AlNoorCraft Boxes">
+  </div>
+</section>
+
+<section class="section">
+  <div class="cats">
+    <div class="cat" onclick="filterCat('saving')"><div><h3>Saving Boxes</h3><span>10K se 500K tak • 5 Products</span></div><b>💰</b></div>
+    <div class="cat" onclick="filterCat('jewellery')"><div><h3>Jewellery Boxes</h3><span>Velvet • Ring • Bridal • 4 Products</span></div><b>💍</b></div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <h2>Best Selling Boxes</h2>
+  <p class="sub">Sab se zyada pasand kiye jane wale boxes — AlNoorCraft</p>
+  <div class="filter">
+    <button class="active" onclick="filterCat('all',this)">All</button>
+    <button onclick="filterCat('saving',this)">Saving Boxes</button>
+    <button onclick="filterCat('jewellery',this)">Jewellery Boxes</button>
+  </div>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<section class="section" id="why">
+  <h2>AlNoorCraft Kyun?</h2>
+  <div class="why">
+    <div>🚚<b>All Pakistan Delivery</b><span>2-4 din me delivery</span></div>
+    <div>💵<b>Cash on Delivery</b><span>Pehlay parcel dekho, phir paise do</span></div>
+    <div>✨<b>Premium Quality</b><span>Strong Wooden & Velvet Material</span></div>
+    <div>↩️<b>7 Days Return</b><span>Damage par easy return</span></div>
+  </div>
+</section>
+
+<footer>
+  <h3>AL NOOR <span style="color:var(--brown)">CRAFT</span></h3>
+  <p style="margin-top:8px;font-size:14px">Saving Boxes • Jewellery Boxes • Gift Boxes<br>WhatsApp: 03XX-XXXXXXX • Faisalabad, Pakistan</p>
+  <p style="font-size:12px;margin-top:12px;opacity:.7">© 2026 AlNoorCraft.com — All Rights Reserved</p>
+</footer>
+
+<div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+<div class="drawer" id="drawer">
+  <h3 style="display:flex;justify-content:space-between">Your Cart <span style="cursor:pointer" onclick="toggleCart(false)">✕</span></h3>
+  <div id="cartItems" style="flex:1;overflow:auto;margin-top:10px"></div>
+  <div class="total"><span>Total:</span><span id="cartTotal">Rs 0</span></div>
+  <h4>Checkout — Cash on Delivery</h4>
+  <input id="cName" placeholder="Apna Naam">
+  <input id="cPhone" placeholder="WhatsApp Number 03XX-XXXXXXX">
+  <textarea id="cAddress" placeholder="Poora Address - Sheher, Gali, Makan No."></textarea>
+  <button class="btn-bling" onclick="placeOrder()">✨ Place Order — COD</button>
+  <p id="orderMsg" style="font-size:13px;margin-top:10px;color:green"></p>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // ✅ Hadia - Aapki Real Firebase Config - Already Connected
+  const firebaseConfig = {
+    apiKey: "AIzaSyBx6i6xZvRLnqPpl15a_rGV3LFfDVBKbTU",
+    authDomain: "alnoorcraft-f03cd.firebaseapp.com",
+    projectId: "alnoorcraft-f03cd",
+    storageBucket: "alnoorcraft-f03cd.firebasestorage.app",
+    messagingSenderId: "178838276122",
+    appId: "1:178838276122:web:3ce02586cd2222ae3fa9a3"
+  };
+
+  let db = null;
+  try{ const app = initializeApp(firebaseConfig); db = getFirestore(app); console.log("Firebase Connected - AlNoorCraft"); }catch(e){ console.log("Firebase Error", e); }
+
+  const products = [
+    {id:1, name:"Kids Saving Box - 10,000", cat:"saving", price:999, old:1499, img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80", desc:"Bachon ki pehli saving"},
+    {id:2, name:"Saving Box - 100,000", cat:"saving", price:1499, old:1999, img:"https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=600&q=80", desc:"100K Target Box with Chart"},
+    {id:3, name:"Saving Box - 200,000", cat:"saving", price:1799, old:2499, img:"https://images.unsplash.com/photo-1607863680198-23d4b2565df0?w=600&q=80", desc:"200K Target Box"},
+    {id:4, name:"Saving Box - 300,000", cat:"saving", price:1999, old:2799, img:"https://images.unsplash.com/photo-1610375461246-83df859d849d?w=600&q=80", desc:"300K Target Box"},
+    {id:5, name:"Saving Box - 500,000", cat:"saving", price:2499, old:3499, img:"https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=600&q=80", desc:"Sab se bara 500K Box"},
+    {id:6, name:"Velvet Ring Box - Red", cat:"jewellery", price:899, old:1299, img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80", desc:"Premium Velvet Ring Box"},
+    {id:7, name:"Jewellery Set Box - Black", cat:"jewellery", price:1299, old:1799, img:"https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=600&q=80", desc:"Necklace + Earring Set Box"},
+    {id:8, name:"Bridal Jewellery Box - Golden", cat:"jewellery", price:1999, old:2699, img:"https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?w=600&q=80", desc:"Shadi ke liye Royal Box"},
+    {id:9, name:"Earring / Small Box - Pink", cat:"jewellery", price:699, old:999, img:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=80", desc:"Chota Gift Box"},
+  ];
+
+  let cart = [];
+  let currentFilter = 'all';
+  window.filterCat = (cat, btn)=>{
+    currentFilter = cat;
+    document.querySelectorAll('.filter button').forEach(b=>b.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    render();
+  }
+  function render(){
+    const grid = document.getElementById('productGrid');
+    const list = products.filter(p=> currentFilter==='all' || p.cat===currentFilter);
+    grid.innerHTML = list.map(p=>`
+      <div class="card">
+        <img src="${p.img}">
+        <div class="card-body">
+          <small>${p.cat==='saving'?'Saving Box':'Jewellery Box'}</small>
+          <h3>${p.name}</h3>
+          <p style="font-size:13px;color:#666">${p.desc}</p>
+          <div class="price"><div><b>Rs ${p.price}</b> <s>Rs ${p.old}</s></div><span style="font-size:12px;color:green">⭐ 4.9</span></div>
+          <button class="btn-bling add-btn" onclick="addToCart(${p.id})">✨ Add to Cart</button>
+        </div>
+      </div>`).join('');
+  }
+  window.addToCart = (id)=>{
+    const p = products.find(x=>x.id===id);
+    const found = cart.find(x=>x.id===id);
+    if(found) found.qty++; else cart.push({...p, qty:1});
+    updateCart();
+    toggleCart(true);
+  }
+  function updateCart(){
+    document.getElementById('cartCount').innerText = cart.reduce((a,b)=>a+b.qty,0);
+    let total = cart.reduce((a,b)=>a+b.price*b.qty,0);
+    document.getElementById('cartTotal').innerText = 'Rs '+total;
+    document.getElementById('cartItems').innerHTML = cart.length===0 ? '<p style="color:#888;margin-top:20px;text-align:center">Cart khali hai</p>' : cart.map((item,i)=>`
+      <div class="cart-item">
+        <img src="${item.img}"><div style="flex:1"><b style="font-size:14px">${item.name}</b><br><span>Rs ${item.price}</span></div>
+        <input type="number" min="1" value="${item.qty}" onchange="changeQty(${i},this.value)">
+        <span style="cursor:pointer" onclick="removeItem(${i})">🗑️</span>
+      </div>`).join('');
+  }
+  window.changeQty = (i,v)=>{ cart[i].qty = parseInt(v)||1; updateCart(); }
+  window.removeItem = (i)=>{ cart.splice(i,1); updateCart(); }
+  window.toggleCart = (open)=>{
+    document.getElementById('drawer').classList.toggle('open',open);
+    document.getElementById('overlay').classList.toggle('show',open);
+  }
+  window.placeOrder = async ()=>{
+    const name = document.getElementById('cName').value.trim();
+    const phone = document.getElementById('cPhone').value.trim();
+    const address = document.getElementById('cAddress').value.trim();
+    if(!name || !phone || !address){ alert('Please Naam, Phone aur Address poora likho'); return; }
+    if(cart.length===0){ alert('Cart khali hai'); return; }
+    const order = { customerName:name, phone, address, items:cart, total:cart.reduce((a,b)=>a+b.price*b.qty,0), status:'pending', createdAt:new Date().toISOString() };
+    try{
+      if(db) await addDoc(collection(db,"orders"), order);
+      document.getElementById('orderMsg').innerText = '✅ Shukriya '+name+'! Aapka order mil gaya. Hum WhatsApp par confirm karenge.';
+      cart = []; updateCart();
+    }catch(e){
+      document.getElementById('orderMsg').innerText = 'Order me error aaya: ' + e.message + ' - Pehle Firestore Database banao (Test Mode me)';
+      console.log(e);
+    }
+  }
+  render(); updateCart();
+</script>
+</body>
+</html>
